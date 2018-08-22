@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Deploy') {
+            when {
+                expression { BRANCH_NAME ==~ /(integration)/ }
+                anyOf {
+                    environment name: 'DEPLOY_TO', value: 'production'
+                    environment name: 'DEPLOY_TO', value: 'staging'
+                }
+            }
+            steps {
+                echo 'Deploy completed'
+            }
+        }
+    }
+}
