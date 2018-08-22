@@ -1,0 +1,7 @@
+FROM tomcat:7-jre7
+MAINTAINER "Santosh <s.dakarapu.kumar@accenture.com>"
+
+ADD settings.xml /usr/local/tomcat/conf/
+ADD tomcat-users.xml /usr/local/tomcat/conf/
+
+ADD sample.war /usr/local/tomcat/webapps
