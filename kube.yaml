@@ -1,0 +1,33 @@
+-- Create a master pod
+
+apiVersion: version3
+kind: Deployment
+metadata:
+  name: Kubernetes-world
+spec:
+  
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: Kubernetes-world
+---
+apiVersion: apps/version3
+kind: Deployment
+metadata:
+  name: Kubernetes-world
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: Kubernetes-world
+template:
+    metadata:
+      labels:
+        app: Kubernetes-world
+spec:
+      containers:
+      - name: Kubernetes-world
+        image: sancy39/httpd
+        ports:
+        - containerPort: 8080
